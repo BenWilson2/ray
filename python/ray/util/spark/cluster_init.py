@@ -904,7 +904,9 @@ def setup_ray_cluster(
 
     spark_master = spark.sparkContext.master
     if not (
-        spark_master.startswith("spark://") or spark_master.startswith("local-cluster[")
+        spark_master.startswith("spark://")
+        or spark_master.startswith("local-cluster[")
+        or spark_master.startswith("local[")
     ):
         raise RuntimeError(
             "Ray on Spark only supports spark cluster in standalone mode or "
